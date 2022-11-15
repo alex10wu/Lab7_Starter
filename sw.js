@@ -48,9 +48,8 @@ self.addEventListener('fetch', async function (event) {
     return cache.match(event.request).then((cachedResponse) => {
       return cachedResponse || fetch(event.request).then((fetchedResponse) => {
         cache.put(event.request, fetchedResponse.clone());
-        return networkResponse;
       });
-      return cachedResponse || fetchedResponse;
+      return fetchedResponse;
     });
   }));
  
